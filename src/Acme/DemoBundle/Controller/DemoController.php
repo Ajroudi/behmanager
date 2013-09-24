@@ -19,6 +19,7 @@ class DemoController extends Controller
     public function indexAction()
     {
         return array();
+        //tableau
     }
 
     /**
