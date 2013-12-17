@@ -1,0 +1,4 @@
+manager_commercial:
+    resource: "@ManagerCommercialBundle/Resources/config/routing.yml"
+    prefix:   /
+

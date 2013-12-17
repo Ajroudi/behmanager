@@ -1,0 +1,7 @@
+parameters:
+#    manager_commercial.example.class: Manager\CommercialBundle\Example
+
+services:
+#    manager_commercial.example:
+#        class: %manager_commercial.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
