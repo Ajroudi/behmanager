@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Client
@@ -63,6 +64,17 @@ class Client
      */
     private $mf;
 
+ /**
+     * @ORM\OneToMany(targetEntity="Offre", mappedBy="client")
+     */
+    private $offres;
+
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->offres = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -210,5 +222,38 @@ class Client
     public function getMf()
     {
         return $this->mf;
+    }
+
+    /**
+     * Add offres
+     *
+     * @param \Manager\CommercialBundle\Entity\Offre $offres
+     * @return Client
+     */
+    public function addOffre(\Manager\CommercialBundle\Entity\Offre $offres)
+    {
+        $this->offres[] = $offres;
+    
+        return $this;
+    }
+
+    /**
+     * Remove offres
+     *
+     * @param \Manager\CommercialBundle\Entity\Offre $offres
+     */
+    public function removeOffre(\Manager\CommercialBundle\Entity\Offre $offres)
+    {
+        $this->offres->removeElement($offres);
+    }
+
+    /**
+     * Get offres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOffres()
+    {
+        return $this->offres;
     }
 }

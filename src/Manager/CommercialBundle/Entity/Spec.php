@@ -28,6 +28,11 @@ class Spec
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="specs")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    private $article;
 
     /**
      * Get id
@@ -60,5 +65,28 @@ class Spec
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $article
+     * @return Spec
+     */
+    public function setArticle(\Manager\CommercialBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+    
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Manager\CommercialBundle\Entity\Article 
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

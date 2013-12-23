@@ -62,7 +62,18 @@ class Ligne
      * @ORM\Column(name="totalttc", type="float")
      */
     private $totalttc;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="lignes")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    private $article;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Offre", inversedBy="lignes")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
+     */
+    private $offre;
 
     /**
      * Get id
@@ -210,5 +221,51 @@ class Ligne
     public function getTotalttc()
     {
         return $this->totalttc;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $article
+     * @return Ligne
+     */
+    public function setArticle(\Manager\CommercialBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+    
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Manager\CommercialBundle\Entity\Article 
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * Set offre
+     *
+     * @param \Manager\CommercialBundle\Entity\Offre $offre
+     * @return Ligne
+     */
+    public function setOffre(\Manager\CommercialBundle\Entity\Offre $offre = null)
+    {
+        $this->offre = $offre;
+    
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return \Manager\CommercialBundle\Entity\Offre 
+     */
+    public function getOffre()
+    {
+        return $this->offre;
     }
 }

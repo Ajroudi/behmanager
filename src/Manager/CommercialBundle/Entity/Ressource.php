@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ressource
@@ -34,7 +35,18 @@ class Ressource
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
-
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="ressources")
+     */
+    private $articles;
+    
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +102,38 @@ class Ressource
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     * @return Ressource
+     */
+    public function addArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     */
+    public function removeArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

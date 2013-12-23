@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Fournisseur
@@ -55,6 +56,18 @@ class Fournisseur
      * @ORM\Column(name="logo", type="string", length=255)
      */
     private $logo;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="fournisseur")
+     */
+    private $articles;
+
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->articles = new ArrayCollection();
+    }
 
 
     /**
@@ -180,5 +193,38 @@ class Fournisseur
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     * @return Fournisseur
+     */
+    public function addArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     */
+    public function removeArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

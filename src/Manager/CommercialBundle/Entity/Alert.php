@@ -55,6 +55,12 @@ class Alert
      * @ORM\Column(name="vu", type="boolean")
      */
     private $vu;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="alerts")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
 
     /**
@@ -180,5 +186,28 @@ class Alert
     public function getVu()
     {
         return $this->vu;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Manager\CommercialBundle\Entity\User $user
+     * @return Alert
+     */
+    public function setUser(\Manager\CommercialBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Manager\CommercialBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

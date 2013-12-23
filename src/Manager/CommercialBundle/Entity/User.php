@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -63,6 +64,23 @@ class User
      */
     private $activer;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Alert", mappedBy="user")
+     */
+    private $alerts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
+     */
+    private $messages;
+
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->alerts = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -210,5 +228,71 @@ class User
     public function getActiver()
     {
         return $this->activer;
+    }
+
+    /**
+     * Add alerts
+     *
+     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     * @return User
+     */
+    public function addAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    {
+        $this->alerts[] = $alerts;
+    
+        return $this;
+    }
+
+    /**
+     * Remove alerts
+     *
+     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     */
+    public function removeAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    {
+        $this->alerts->removeElement($alerts);
+    }
+
+    /**
+     * Get alerts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlerts()
+    {
+        return $this->alerts;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \Manager\CommercialBundle\Entity\Message $messages
+     * @return User
+     */
+    public function addMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+    
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \Manager\CommercialBundle\Entity\Message $messages
+     */
+    public function removeMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

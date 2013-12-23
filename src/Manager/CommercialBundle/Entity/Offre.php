@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Offre
@@ -41,7 +42,24 @@ class Offre
      * @ORM\Column(name="totalttc", type="float")
      */
     private $totalttc;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="offres")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="offre")
+     */
+    private $lignes;
+
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->lignes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,5 +138,61 @@ class Offre
     public function getTotalttc()
     {
         return $this->totalttc;
+    }
+
+    /**
+     * Add lignes
+     *
+     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
+     * @return Offre
+     */
+    public function addLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
+    {
+        $this->lignes[] = $lignes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove lignes
+     *
+     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
+     */
+    public function removeLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
+    {
+        $this->lignes->removeElement($lignes);
+    }
+
+    /**
+     * Get lignes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLignes()
+    {
+        return $this->lignes;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \Manager\CommercialBundle\Entity\Client $client
+     * @return Offre
+     */
+    public function setClient(\Manager\CommercialBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+    
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \Manager\CommercialBundle\Entity\Client 
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Categorie
@@ -35,7 +36,24 @@ class Categorie
      */
     private $img;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Famille", inversedBy="categories")
+     * @ORM\JoinColumn(name="famille_id", referencedColumnName="id")
+     */
+    private $famille;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Rang", mappedBy="categorie")
+     */
+    private $ranges;
+
+   /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->ranges = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -90,5 +108,61 @@ class Categorie
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * Set famille
+     *
+     * @param \Manager\CommercialBundle\Entity\Famille $famille
+     * @return Categorie
+     */
+    public function setFamille(\Manager\CommercialBundle\Entity\Famille $famille = null)
+    {
+        $this->famille = $famille;
+    
+        return $this;
+    }
+
+    /**
+     * Get famille
+     *
+     * @return \Manager\CommercialBundle\Entity\Famille 
+     */
+    public function getFamille()
+    {
+        return $this->famille;
+    }
+
+    /**
+     * Add ranges
+     *
+     * @param \Manager\CommercialBundle\Entity\Range $ranges
+     * @return Categorie
+     */
+    public function addRange(\Manager\CommercialBundle\Entity\Range $ranges)
+    {
+        $this->ranges[] = $ranges;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ranges
+     *
+     * @param \Manager\CommercialBundle\Entity\Range $ranges
+     */
+    public function removeRange(\Manager\CommercialBundle\Entity\Range $ranges)
+    {
+        $this->ranges->removeElement($ranges);
+    }
+
+    /**
+     * Get ranges
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRanges()
+    {
+        return $this->ranges;
     }
 }

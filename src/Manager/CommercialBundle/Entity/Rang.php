@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Rang
@@ -35,6 +36,23 @@ class Rang
      */
     private $img;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="ranges")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="rangs")
+     */
+    private $articles;
+    
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +108,61 @@ class Rang
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Manager\CommercialBundle\Entity\Categorie $categorie
+     * @return Rang
+     */
+    public function setCategorie(\Manager\CommercialBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+    
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Manager\CommercialBundle\Entity\Categorie 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     * @return Rang
+     */
+    public function addArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \Manager\CommercialBundle\Entity\Article $articles
+     */
+    public function removeArticle(\Manager\CommercialBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

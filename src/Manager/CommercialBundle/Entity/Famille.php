@@ -3,6 +3,7 @@
 namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Famille
@@ -34,7 +35,18 @@ class Famille
      * @ORM\Column(name="img", type="string", length=255)
      */
     private $img;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="famille")
+     */
+    private $categories;
 
+    /**
+     * Constructeur
+     */
+    public function __construct() {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +102,38 @@ class Famille
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Manager\CommercialBundle\Entity\Categorie $categories
+     * @return Famille
+     */
+    public function addCategorie(\Manager\CommercialBundle\Entity\Categorie $categories)
+    {
+        $this->categories[] = $categories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Manager\CommercialBundle\Entity\Categorie $categories
+     */
+    public function removeCategorie(\Manager\CommercialBundle\Entity\Categorie $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
