@@ -1,6 +1,6 @@
 <?php
 
-namespace Manager\CommercialBundle\Entity;
+namespace Manager\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * User
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Manager\CommercialBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Manager\UserBundle\Entity\UserRepository")
  */
 class User
 {
@@ -233,10 +233,10 @@ class User
     /**
      * Add alerts
      *
-     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     * @param \Manager\UserBundle\Entity\Alert $alerts
      * @return User
      */
-    public function addAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    public function addAlert(\Manager\UserBundle\Entity\Alert $alerts)
     {
         $this->alerts[] = $alerts;
     
@@ -246,9 +246,9 @@ class User
     /**
      * Remove alerts
      *
-     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     * @param \Manager\UserBundle\Entity\Alert $alerts
      */
-    public function removeAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    public function removeAlert(\Manager\UserBundle\Entity\Alert $alerts)
     {
         $this->alerts->removeElement($alerts);
     }
@@ -266,10 +266,10 @@ class User
     /**
      * Add messages
      *
-     * @param \Manager\CommercialBundle\Entity\Message $messages
+     * @param \Manager\UserBundle\Entity\Message $messages
      * @return User
      */
-    public function addMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    public function addMessage(\Manager\UserBundle\Entity\Message $messages)
     {
         $this->messages[] = $messages;
     
@@ -279,9 +279,9 @@ class User
     /**
      * Remove messages
      *
-     * @param \Manager\CommercialBundle\Entity\Message $messages
+     * @param \Manager\UserBundle\Entity\Message $messages
      */
-    public function removeMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    public function removeMessage(\Manager\UserBundle\Entity\Message $messages)
     {
         $this->messages->removeElement($messages);
     }

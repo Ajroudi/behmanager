@@ -1,16 +1,16 @@
 <?php
 
-namespace Manager\CommercialBundle\Entity;
+namespace Manager\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message
+ * Alert
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Manager\CommercialBundle\Entity\MessageRepository")
+ * @ORM\Entity(repositoryClass="Manager\UserBundle\Entity\AlertRepository")
  */
-class Message
+class Alert
 {
     /**
      * @var integer
@@ -24,16 +24,16 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="destination", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $destination;
+    private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="objet", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $objet;
+    private $titre;
 
     /**
      * @var string
@@ -57,7 +57,7 @@ class Message
     private $vu;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="alerts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -74,56 +74,56 @@ class Message
     }
 
     /**
-     * Set destination
+     * Set type
      *
-     * @param string $destination
-     * @return Message
+     * @param string $type
+     * @return Alert
      */
-    public function setDestination($destination)
+    public function setType($type)
     {
-        $this->destination = $destination;
+        $this->type = $type;
     
         return $this;
     }
 
     /**
-     * Get destination
+     * Get type
      *
      * @return string 
      */
-    public function getDestination()
+    public function getType()
     {
-        return $this->destination;
+        return $this->type;
     }
 
     /**
-     * Set objet
+     * Set titre
      *
-     * @param string $objet
-     * @return Message
+     * @param string $titre
+     * @return Alert
      */
-    public function setObjet($objet)
+    public function setTitre($titre)
     {
-        $this->objet = $objet;
+        $this->titre = $titre;
     
         return $this;
     }
 
     /**
-     * Get objet
+     * Get titre
      *
      * @return string 
      */
-    public function getObjet()
+    public function getTitre()
     {
-        return $this->objet;
+        return $this->titre;
     }
 
     /**
      * Set contenu
      *
      * @param string $contenu
-     * @return Message
+     * @return Alert
      */
     public function setContenu($contenu)
     {
@@ -146,7 +146,7 @@ class Message
      * Set date
      *
      * @param \DateTime $date
-     * @return Message
+     * @return Alert
      */
     public function setDate($date)
     {
@@ -169,7 +169,7 @@ class Message
      * Set vu
      *
      * @param boolean $vu
-     * @return Message
+     * @return Alert
      */
     public function setVu($vu)
     {
@@ -191,10 +191,10 @@ class Message
     /**
      * Set user
      *
-     * @param \Manager\CommercialBundle\Entity\User $user
-     * @return Message
+     * @param \Manager\UserBundle\Entity\User $user
+     * @return Alert
      */
-    public function setUser(\Manager\CommercialBundle\Entity\User $user = null)
+    public function setUser(\Manager\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
@@ -204,7 +204,7 @@ class Message
     /**
      * Get user
      *
-     * @return \Manager\CommercialBundle\Entity\User 
+     * @return \Manager\UserBundle\Entity\User 
      */
     public function getUser()
     {
