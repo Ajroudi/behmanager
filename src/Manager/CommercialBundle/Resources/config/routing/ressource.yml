@@ -1,0 +1,30 @@
+admin_ressource:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:index" }
+
+admin_ressource_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:show" }
+
+admin_ressource_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:new" }
+
+admin_ressource_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:create" }
+    requirements: { _method: post }
+
+admin_ressource_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:edit" }
+
+admin_ressource_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:update" }
+    requirements: { _method: post|put }
+
+admin_ressource_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Ressource:delete" }
+    requirements: { _method: post|delete }

@@ -1,3 +1,0 @@
-manager_user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ManagerUserBundle:Default:index }

@@ -1,0 +1,30 @@
+admin_fournisseur:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:index" }
+
+admin_fournisseur_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:show" }
+
+admin_fournisseur_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:new" }
+
+admin_fournisseur_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:create" }
+    requirements: { _method: post }
+
+admin_fournisseur_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:edit" }
+
+admin_fournisseur_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:update" }
+    requirements: { _method: post|put }
+
+admin_fournisseur_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Fournisseur:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+admin_spec:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Spec:index" }
+
+admin_spec_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Spec:show" }
+
+admin_spec_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Spec:new" }
+
+admin_spec_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Spec:create" }
+    requirements: { _method: post }
+
+admin_spec_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Spec:edit" }
+
+admin_spec_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Spec:update" }
+    requirements: { _method: post|put }
+
+admin_spec_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Spec:delete" }
+    requirements: { _method: post|delete }

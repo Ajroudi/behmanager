@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Famille creation</h1>
+{{ form_enctype(form) }}
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_famille') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

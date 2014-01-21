@@ -1,0 +1,48 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+
+ <h1>Offres Commerciales <small>Les Biens d'Equipements Hôteliers</small></h1>
+ <ol class="breadcrumb">
+              <li><a href="{{ path('commercial_offre') }}"><i class="icon-dashboard"></i> Offres</a></li>
+              <li class="active"><i class="icon-file-alt"></i> Gestion des offres BEH</li>
+            </ol>
+          </div>
+        </div><!-- /.row -->
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_offre_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.titre }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_offre_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_offre_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_offre_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

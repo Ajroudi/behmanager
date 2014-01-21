@@ -25,55 +25,53 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="ref", type="string", length=255)
-     */
-    private $ref;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="designation", type="string", length=255)
      */
     private $designation;
-    
+
     /**
+     * @ORM\ManyToMany(targetEntity="Rang", inversedBy="articles")
+     * @ORM\JoinTable(name="range_article")
+     */
+    private $ranges;
+    
+     /**
      * @ORM\ManyToOne(targetEntity="Fournisseur", inversedBy="articles")
      * @ORM\JoinColumn(name="fournisseur_id", referencedColumnName="id")
      */
     private $fournisseur;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Spec", mappedBy="article")
-     */
-    private $specs;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="article")
-     */
-    private $lignes;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Rang", inversedBy="articles")
-     * @ORM\JoinTable(name="article_range")
-     */
-    private $rangs;
     
-    /**
-     * @ORM\ManyToMany(targetEntity="Ressource", inversedBy="articles")
-     * @ORM\JoinTable(name="article_ressource")
+     /**
+     * @ORM\OneToMany(targetEntity="Spec", mappedBy="article")
+     */ 
+    private $specs;
+    
+        
+     /**
+     * @ORM\ManyToMany(targetEntity="Ressource", mappedBy="articles")
      */
     private $ressources;
     
-    /**
-     * Constructeur
-     */
+     /**
+     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="article")
+     */ 
+    private $lignes;
+
     public function __construct() {
+        $this->ranges = new ArrayCollection();
         $this->specs = new ArrayCollection();
-        $this->lignes = new ArrayCollection();
-        $this->rangs = new ArrayCollection();
         $this->ressources = new ArrayCollection();
+        $this->lignes = new ArrayCollection();
+
     }
     
+    /**
+     * toString
+     */
+    public function __toString(){
+    return $this->getDesignation();
+    }
+
     /**
      * Get id
      *
@@ -82,29 +80,6 @@ class Article
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set ref
-     *
-     * @param string $ref
-     * @return Article
-     */
-    public function setRef($ref)
-    {
-        $this->ref = $ref;
-    
-        return $this;
-    }
-
-    /**
-     * Get ref
-     *
-     * @return string 
-     */
-    public function getRef()
-    {
-        return $this->ref;
     }
 
     /**
@@ -128,6 +103,39 @@ class Article
     public function getDesignation()
     {
         return $this->designation;
+    }
+
+    /**
+     * Add ranges
+     *
+     * @param \Manager\CommercialBundle\Entity\Rang $ranges
+     * @return Article
+     */
+    public function addRange(\Manager\CommercialBundle\Entity\Rang $ranges)
+    {
+        $this->ranges[] = $ranges;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ranges
+     *
+     * @param \Manager\CommercialBundle\Entity\Rang $ranges
+     */
+    public function removeRange(\Manager\CommercialBundle\Entity\Rang $ranges)
+    {
+        $this->ranges->removeElement($ranges);
+    }
+
+    /**
+     * Get ranges
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRanges()
+    {
+        return $this->ranges;
     }
 
     /**
@@ -187,72 +195,6 @@ class Article
     }
 
     /**
-     * Add lignes
-     *
-     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
-     * @return Article
-     */
-    public function addLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
-    {
-        $this->lignes[] = $lignes;
-    
-        return $this;
-    }
-
-    /**
-     * Remove lignes
-     *
-     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
-     */
-    public function removeLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
-    {
-        $this->lignes->removeElement($lignes);
-    }
-
-    /**
-     * Get lignes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLignes()
-    {
-        return $this->lignes;
-    }
-
-    /**
-     * Add rangs
-     *
-     * @param \Manager\CommercialBundle\Entity\Rang $rangs
-     * @return Article
-     */
-    public function addRang(\Manager\CommercialBundle\Entity\Rang $rangs)
-    {
-        $this->rangs[] = $rangs;
-    
-        return $this;
-    }
-
-    /**
-     * Remove rangs
-     *
-     * @param \Manager\CommercialBundle\Entity\Rang $rangs
-     */
-    public function removeRang(\Manager\CommercialBundle\Entity\Rang $rangs)
-    {
-        $this->rangs->removeElement($rangs);
-    }
-
-    /**
-     * Get rangs
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRangs()
-    {
-        return $this->rangs;
-    }
-
-    /**
      * Add ressources
      *
      * @param \Manager\CommercialBundle\Entity\Ressource $ressources
@@ -283,5 +225,38 @@ class Article
     public function getRessources()
     {
         return $this->ressources;
+    }
+
+    /**
+     * Add lignes
+     *
+     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
+     * @return Article
+     */
+    public function addLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
+    {
+        $this->lignes[] = $lignes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove lignes
+     *
+     * @param \Manager\CommercialBundle\Entity\Ligne $lignes
+     */
+    public function removeLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
+    {
+        $this->lignes->removeElement($lignes);
+    }
+
+    /**
+     * Get lignes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLignes()
+    {
+        return $this->lignes;
     }
 }

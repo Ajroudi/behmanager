@@ -30,28 +30,27 @@ class Categorie
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=255)
-     */
-    private $img;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Famille", inversedBy="categories")
      * @ORM\JoinColumn(name="famille_id", referencedColumnName="id")
      */
     private $famille;
-
+    
     /**
      * @ORM\OneToMany(targetEntity="Rang", mappedBy="categorie")
      */
-    private $ranges;
-
-   /**
+    private $rangs;
+    
+    /**
      * Constructeur
      */
     public function __construct() {
-        $this->ranges = new ArrayCollection();
+        $this->rangs = new ArrayCollection();
+    }
+    /**
+     * toString()
+     */
+    public function __toString() {
+        return $this->getName();
     }
     
     /**
@@ -88,29 +87,6 @@ class Categorie
     }
 
     /**
-     * Set img
-     *
-     * @param string $img
-     * @return Categorie
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-    
-        return $this;
-    }
-
-    /**
-     * Get img
-     *
-     * @return string 
-     */
-    public function getImg()
-    {
-        return $this->img;
-    }
-
-    /**
      * Set famille
      *
      * @param \Manager\CommercialBundle\Entity\Famille $famille
@@ -134,35 +110,35 @@ class Categorie
     }
 
     /**
-     * Add ranges
+     * Add rangs
      *
-     * @param \Manager\CommercialBundle\Entity\Range $ranges
+     * @param \Manager\CommercialBundle\Entity\Rang $rangs
      * @return Categorie
      */
-    public function addRange(\Manager\CommercialBundle\Entity\Range $ranges)
+    public function addRang(\Manager\CommercialBundle\Entity\Rang $rangs)
     {
-        $this->ranges[] = $ranges;
+        $this->rangs[] = $rangs;
     
         return $this;
     }
 
     /**
-     * Remove ranges
+     * Remove rangs
      *
-     * @param \Manager\CommercialBundle\Entity\Range $ranges
+     * @param \Manager\CommercialBundle\Entity\Rang $rangs
      */
-    public function removeRange(\Manager\CommercialBundle\Entity\Range $ranges)
+    public function removeRang(\Manager\CommercialBundle\Entity\Rang $rangs)
     {
-        $this->ranges->removeElement($ranges);
+        $this->rangs->removeElement($rangs);
     }
 
     /**
-     * Get ranges
+     * Get rangs
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getRanges()
+    public function getRangs()
     {
-        return $this->ranges;
+        return $this->rangs;
     }
 }

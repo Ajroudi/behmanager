@@ -25,28 +25,27 @@ class Ressource
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $type;
+    private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255)
-     */
-    private $url;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="ressources")
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="ressources")
+     * @ORM\JoinTable(name="article_ressource")
      */
     private $articles;
     
-    /**
-     * Constructeur
-     */
     public function __construct() {
         $this->articles = new ArrayCollection();
     }
+    
+    /**
+     * toString
+     */
+    public function __toString() {
+        return $this->getName();
+    }
+
 
     /**
      * Get id
@@ -59,49 +58,26 @@ class Ressource
     }
 
     /**
-     * Set type
+     * Set name
      *
-     * @param string $type
+     * @param string $name
      * @return Ressource
      */
-    public function setType($type)
+    public function setName($name)
     {
-        $this->type = $type;
+        $this->name = $name;
     
         return $this;
     }
 
     /**
-     * Get type
+     * Get name
      *
      * @return string 
      */
-    public function getType()
+    public function getName()
     {
-        return $this->type;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Ressource
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
+        return $this->name;
     }
 
     /**

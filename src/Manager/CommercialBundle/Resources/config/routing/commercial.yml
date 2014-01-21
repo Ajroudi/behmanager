@@ -1,0 +1,20 @@
+commercial_offre:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:offre" }
+
+commercial_fournisseur:
+    pattern:  /fournisseur
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:fournisseur" }
+    
+commercial_famille:
+    pattern:  /famille
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:famille" }
+    
+commercial_client:
+    pattern:  /client
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:client" }
+    
+commercial_ressource:
+    pattern:  /ressource
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:ressource" }
+

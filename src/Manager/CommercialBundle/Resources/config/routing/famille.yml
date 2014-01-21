@@ -1,0 +1,30 @@
+admin_famille:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Famille:index" }
+
+admin_famille_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Famille:show" }
+
+admin_famille_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Famille:new" }
+
+admin_famille_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Famille:create" }
+    requirements: { _method: post }
+
+admin_famille_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Famille:edit" }
+
+admin_famille_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Famille:update" }
+    requirements: { _method: post|put }
+
+admin_famille_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Famille:delete" }
+    requirements: { _method: post|delete }

@@ -1,3 +1,47 @@
 manager_commercial_homepage:
     pattern:  /
     defaults: { _controller: ManagerCommercialBundle:Default:index }
+
+ManagerCommercialBundle_admin_famille:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/famille.yml"
+    prefix:   /admin/famille
+    
+ManagerCommercialBundle_admin_categorie:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/categorie.yml"
+    prefix:   /admin/categorie
+    
+ManagerCommercialBundle_admin_range:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/rang.yml"
+    prefix:   /admin/range
+
+ManagerCommercialBundle_admin_article:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/article.yml"
+    prefix:   /admin/article
+
+ManagerCommercialBundle_admin_fournisseur:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/fournisseur.yml"
+    prefix:   /admin/fournisseur
+    
+ManagerCommercialBundle_admin_spec:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/spec.yml"
+    prefix:   /admin/spec
+
+ManagerCommercialBundle_admin_ressource:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/ressource.yml"
+    prefix:   /admin/ressource
+    
+ManagerCommercialBundle_admin_ligne:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/ligne.yml"
+    prefix:   /admin/ligne
+    
+ManagerCommercialBundle_admin_offre:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/offre.yml"
+    prefix:   /admin/offre
+    
+ManagerCommercialBundle_admin_client:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/client.yml"
+    prefix:   /admin/client
+    
+ManagerCommercialBundle_commercial:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/commercial.yml"
+    prefix:   /commercial

@@ -1,0 +1,30 @@
+admin_categorie:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:index" }
+
+admin_categorie_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:show" }
+
+admin_categorie_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:new" }
+
+admin_categorie_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:create" }
+    requirements: { _method: post }
+
+admin_categorie_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:edit" }
+
+admin_categorie_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:update" }
+    requirements: { _method: post|put }
+
+admin_categorie_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Categorie:delete" }
+    requirements: { _method: post|delete }

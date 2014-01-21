@@ -1,0 +1,30 @@
+admin_ligne:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:index" }
+
+admin_ligne_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:show" }
+
+admin_ligne_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:new" }
+
+admin_ligne_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:create" }
+    requirements: { _method: post }
+
+admin_ligne_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:edit" }
+
+admin_ligne_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:update" }
+    requirements: { _method: post|put }
+
+admin_ligne_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Ligne:delete" }
+    requirements: { _method: post|delete }

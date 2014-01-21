@@ -2,6 +2,7 @@
 
 namespace Manager\CommercialBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -30,30 +31,30 @@ class Rang
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=255)
-     */
-    private $img;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="ranges")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="rangs")
      * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
      */
     private $categorie;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="rangs")
+   /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="ranges")
      */
     private $articles;
-    
-    /**
+
+     /**
      * Constructeur
      */
     public function __construct() {
         $this->articles = new ArrayCollection();
     }
-
+    
+     /**
+     * toString
+     */
+    public function __toString() {
+        return $this->getName();
+    }
+    
     /**
      * Get id
      *
@@ -85,29 +86,6 @@ class Rang
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set img
-     *
-     * @param string $img
-     * @return Rang
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-    
-        return $this;
-    }
-
-    /**
-     * Get img
-     *
-     * @return string 
-     */
-    public function getImg()
-    {
-        return $this->img;
     }
 
     /**

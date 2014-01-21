@@ -1,0 +1,30 @@
+admin_offre:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Offre:index" }
+
+admin_offre_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Offre:show" }
+
+admin_offre_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Offre:new" }
+
+admin_offre_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Offre:create" }
+    requirements: { _method: post }
+
+admin_offre_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Offre:edit" }
+
+admin_offre_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Offre:update" }
+    requirements: { _method: post|put }
+
+admin_offre_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Offre:delete" }
+    requirements: { _method: post|delete }

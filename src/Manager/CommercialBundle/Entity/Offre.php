@@ -23,44 +23,42 @@ class Offre
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $date;
+    private $titre;
 
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="timbre", type="float")
-     */
-    private $timbre;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="totalttc", type="float")
-     */
-    private $totalttc;
+     /**
+     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="article")
+     */ 
+    private $lignes;
     
-    /**
+     /**
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="offres")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="offre")
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="offres")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $lignes;
-
+    private $user;
+    
     /**
      * Constructeur
      */
     public function __construct() {
         $this->lignes = new ArrayCollection();
     }
-
+    /**
+     * toString
+     */
+    public function __toString() {
+        return $this->getTitre();
+    }
+    
     /**
      * Get id
      *
@@ -72,72 +70,26 @@ class Offre
     }
 
     /**
-     * Set date
+     * Set titre
      *
-     * @param \DateTime $date
+     * @param string $titre
      * @return Offre
      */
-    public function setDate($date)
+    public function setTitre($titre)
     {
-        $this->date = $date;
+        $this->titre = $titre;
     
         return $this;
     }
 
     /**
-     * Get date
+     * Get titre
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getDate()
+    public function getTitre()
     {
-        return $this->date;
-    }
-
-    /**
-     * Set timbre
-     *
-     * @param float $timbre
-     * @return Offre
-     */
-    public function setTimbre($timbre)
-    {
-        $this->timbre = $timbre;
-    
-        return $this;
-    }
-
-    /**
-     * Get timbre
-     *
-     * @return float 
-     */
-    public function getTimbre()
-    {
-        return $this->timbre;
-    }
-
-    /**
-     * Set totalttc
-     *
-     * @param float $totalttc
-     * @return Offre
-     */
-    public function setTotalttc($totalttc)
-    {
-        $this->totalttc = $totalttc;
-    
-        return $this;
-    }
-
-    /**
-     * Get totalttc
-     *
-     * @return float 
-     */
-    public function getTotalttc()
-    {
-        return $this->totalttc;
+        return $this->titre;
     }
 
     /**
@@ -194,5 +146,28 @@ class Offre
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Manager\CommercialBundle\Entity\User $user
+     * @return Offre
+     */
+    public function setUser(\Manager\CommercialBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Manager\CommercialBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

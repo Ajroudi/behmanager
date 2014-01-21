@@ -1,0 +1,30 @@
+admin_client:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Client:index" }
+
+admin_client_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ManagerCommercialBundle:Client:show" }
+
+admin_client_new:
+    pattern:  /new
+    defaults: { _controller: "ManagerCommercialBundle:Client:new" }
+
+admin_client_create:
+    pattern:  /create
+    defaults: { _controller: "ManagerCommercialBundle:Client:create" }
+    requirements: { _method: post }
+
+admin_client_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ManagerCommercialBundle:Client:edit" }
+
+admin_client_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ManagerCommercialBundle:Client:update" }
+    requirements: { _method: post|put }
+
+admin_client_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ManagerCommercialBundle:Client:delete" }
+    requirements: { _method: post|delete }

@@ -33,7 +33,6 @@ class Spec
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     private $article;
-
     /**
      * Get id
      *
