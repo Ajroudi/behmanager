@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Manager\CommercialBundle\Entity\Offre;
 use Manager\CommercialBundle\Form\OffreType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+
 /**
  * Offre controller.
  *
@@ -29,6 +32,51 @@ class OffreController extends Controller
             'entities' => $entities,
         ));
     }
+    
+    public function commercialoffreAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $entities = $em->getRepository('ManagerCommercialBundle:Offre')->findByUser($user);
+
+        return $this->render('ManagerCommercialBundle:Offre:commercialoffre.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+    
+    /**
+     * @Template()
+     */
+    public function ajouterOffreAction()
+            {
+        $offre = new Offre();
+
+        $form = $this->createForm(new OffreType(), $offre);
+        
+        $request = $this->getRequest();
+        if($request->getMethod() === "POST"){
+            $form->bind($request);
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                //Ajouter l'utilisateur courant
+                $user = $this->get('security.context')->getToken()->getUser();
+                $offre->setUser($user);
+                //Ajouter le timbre fiscal
+                $timbre = 0.4;
+                $offre->setTimbre($timbre);
+                
+                $em->persist($offre);
+                $em->flush();
+            }
+        }
+        
+        return $this->render('ManagerCommercialBundle:Offre:new.html.twig', array(
+            'form'   => $form->createView(),
+        ));
+        
+    }
+    
     /**
      * Creates a new Offre entity.
      *
@@ -67,7 +115,7 @@ class OffreController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter une offre','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -146,7 +194,7 @@ class OffreController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer l\'offre','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -216,7 +264,7 @@ class OffreController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_offre_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer l\'offre','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

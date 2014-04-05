@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>BEH MANAGER</title>
+
+    <!-- Favicon BEH MANAGER -->
+    <link rel="shortcut icon" href="{{ asset('manager/images/icone.png') }}" />
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('bundles/managercommercial/css/bootstrap.css')}}" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="{{asset('bundles/managercommercial/css/sb-admin.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('bundles/managercommercial/font-awesome/css/font-awesome.min.css')}}">
+    
+    <!-- add datepiker CSS here -->
+    {% block datepikerCss %} {% endblock %}
+  </head>
+
+  <body>
+     
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{path('dashboard_show')}}"> BEH MANAGER</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li><a href="{{path('dashboard_show')}}"><i class="fa fa-dashboard"></i> Tableau de bord</a></li>
+            <li><a href="{{path('commercial_offre')}}"><i class="fa fa-file-text-o"></i> Offres commerciale</a></li>
+            <li><a href="{{path('commercial_fournisseur')}}"><i class="fa fa-globe"></i> Fournisseurs BEH</a></li>
+            <li><a href="{{path('commercial_famille')}}"><i class="fa fa-th-large"></i> Articles BEH</a></li>
+            <li><a href="{{path('commercial_client')}}"><i class="fa fa-user"></i> Clients BEH</a></li>
+            <li><a href="{{path('commercial_ressource')}}"><i class="fa fa-cloud"></i> Ressources</a></li>
+           
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right navbar-user">
+            <li class="dropdown messages-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">7 New Messages</li>
+                <li class="message-preview">
+                  <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                    <span class="name">John Smith:</span>
+                    <span class="message">Hey there, I wanted to ask you something...</span>
+                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li class="message-preview">
+                  <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                    <span class="name">John Smith:</span>
+                    <span class="message">Hey there, I wanted to ask you something...</span>
+                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li class="message-preview">
+                  <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                    <span class="name">John Smith:</span>
+                    <span class="message">Hey there, I wanted to ask you something...</span>
+                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="#">View Inbox <span class="badge">7</span></a></li>
+              </ul>
+            </li>
+            <li class="dropdown alerts-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Alerts <span class="badge">3</span> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Default <span class="label label-default">Default</span></a></li>
+                <li><a href="#">Primary <span class="label label-primary">Primary</span></a></li>
+                <li><a href="#">Success <span class="label label-success">Success</span></a></li>
+                <li><a href="#">Info <span class="label label-info">Info</span></a></li>
+                <li><a href="#">Warning <span class="label label-warning">Warning</span></a></li>
+                <li><a href="#">Danger <span class="label label-danger">Danger</span></a></li>
+                <li class="divider"></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+           </li>
+           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li class="dropdown user-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  {{ app.user.name }} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{path('fos_user_profile_show')}}"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> Boîte de réception <span class="badge">7</span></a></li>
+                <li><a href="#"><i class="fa fa-gear"></i> Paramètre</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnexion</a></li
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div id="page-wrapper">
+
+        <div class="row">
+          <div class="col-lg-12">
+           
+           
+        
+   <!--  <div class="row">
+          <div class="col-lg-3 text-center" >
+            <div class="panel panel-default">
+              <div class="panel-body">
+                .col-lg-3
+              </div>
+            </div>            
+          </div>
+         
+        </div> /.row -->
+        {% block FOSUser %}{%endblock%}
+        {% block body %}{%endblock%}
+
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+
+    <!-- JavaScript -->
+    <script src="{{asset('bundles/managercommercial/js/jquery-1.10.2.js')}}"></script>
+    <script src="{{asset('bundles/managercommercial/js/bootstrap.js')}}"></script>
+    {% block datepikerJs %}{% endblock %}
+  </body>
+</html>

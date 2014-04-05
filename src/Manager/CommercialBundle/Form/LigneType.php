@@ -15,9 +15,20 @@ class LigneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('qte')
-            ->add('article')
-            ->add('offre')
+            ->add('article',null,array(
+                'attr' => array('class' => 'form-control')))
+            ->add('qte','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('remise','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('puht','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('tva','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('puttc','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('totalttc','text',array(
+                'attr' => array('class' => 'form-control')))
         ;
     }
     

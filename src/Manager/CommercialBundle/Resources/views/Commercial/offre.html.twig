@@ -1,0 +1,66 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+ <h1>Offres BEH <small>Les Biens d'Equipements Hôteliers</small></h1>
+ <ol class="breadcrumb">
+              <li><a href="#"><i class="icon-dashboard"></i> Famille</a></li>
+              <li class="active"><a href="{{ path('admin_offre_new') }}"><i class="icon-file-alt"></i> Ajouter une nouvelle offre BEH</li></a>
+            </ol>
+          </div>
+        </div><!-- /.row -->
+ 
+<div class="row">
+{% if is_granted("ROLE_DIRCOMMERCIAL") %}
+    {% for entity in entities %}
+          <div class="col-lg-3">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <i class="fa fa-file fa-5x"></i>
+                  </div>
+                 <div class="col-xs-8">
+                     <h6> <em>{{entity.titre}} pour {{entity.client}}, crée par {{entity.user}}</em> </h6>
+                         
+                  </div>
+
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                        {{entity.totalttc}} DT
+                    </div>
+                        
+                          <div class="col-xs-6 text-right">
+                      
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-arrow-circle-right"></i> </a>
+                          <ul class="dropdown-menu">
+                            <li><a href="{{ path('admin_offre_show', { 'id': entity.id }) }}">Voir</a></li>
+                            {% if is_granted('ROLE_DIRCOMMERCIAL') %}
+                            <li><a href="{{ path('admin_offre_edit', { 'id': entity.id }) }}">Editer</a></li>
+                            {% endif %}
+    
+                          </ul>
+                        </div>
+                    </div>
+                          
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+         {% endfor %}
+        {% endif %}
+        
+        
+        {% if is_granted("ROLE_COMMERCIAL") %}
+            {{ render(controller('ManagerCommercialBundle:Offre:commercialoffre') )}}
+        {% endif %}        
+        </div><!-- /.row -->
+
+
+    {% endblock %}      
+       

@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Manager\CommercialBundle\Entity\Famille;
 use Manager\CommercialBundle\Form\FamilleType;
 
+
+
+
 /**
  * Famille controller.
  *
@@ -71,7 +74,7 @@ class FamilleController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter une famille','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -112,6 +115,22 @@ class FamilleController extends Controller
             'delete_form' => $deleteForm->createView(),        ));
     }
 
+     /**
+     * Finds and displays a Categories By Famille entity.
+     *
+     */
+        public function categoriesAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('ManagerCommercialBundle:Categorie')->findByFamille($id);
+
+
+        return $this->render('ManagerCommercialBundle:Commercial:categorie.html.twig', array(
+            'entities' => $entities,
+      ));
+    }
+
     /**
      * Displays a form to edit an existing Famille entity.
      *
@@ -150,7 +169,7 @@ class FamilleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer la famille','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -220,7 +239,7 @@ class FamilleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_famille_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer la famille','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

@@ -18,3 +18,24 @@ commercial_ressource:
     pattern:  /ressource
     defaults: { _controller: "ManagerCommercialBundle:Commercial:ressource" }
 
+famille_categorie:
+    pattern:  /famille/{id}
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:categories" }
+
+categorie_range:
+    pattern:  /categorie/{id}
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:ranges" }
+    
+range_product:
+    pattern:  /range/{id}
+    defaults: { _controller: "ManagerCommercialBundle:Article:rangesProduct" }
+    
+fournisseur_article:
+    pattern:  /fournisseur/{id}
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:produitFournisseur" }
+    
+test:
+    pattern:  /test/
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:test" }
+
+

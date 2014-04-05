@@ -8,7 +8,7 @@ admin_offre_show:
 
 admin_offre_new:
     pattern:  /new
-    defaults: { _controller: "ManagerCommercialBundle:Offre:new" }
+    defaults: { _controller: "ManagerCommercialBundle:Offre:ajouterOffre" }
 
 admin_offre_create:
     pattern:  /create

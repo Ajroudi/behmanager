@@ -4,6 +4,7 @@ namespace Manager\CommercialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+//use Symfony\Component\DependencyInjection\ContainerInterface as Container
 
 /**
  * Offre
@@ -28,9 +29,30 @@ class Offre
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="timbre", type="decimal", scale=3)
+     */
+    private $timbre;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="totalttc", type="decimal", scale=3)
+     */
+    private $totalttc;
 
      /**
-     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Ligne", mappedBy="article", cascade={"persist"})
      */ 
     private $lignes;
     
@@ -44,13 +66,28 @@ class Offre
      * @ORM\ManyToOne(targetEntity="User", inversedBy="offres")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+     public $user;
+     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etat", type="string", length=255)
+     */
+     public $etat;     
     
     /**
      * Constructeur
      */
     public function __construct() {
         $this->lignes = new ArrayCollection();
+        $this->date = new \DateTime();
+        $this->timbre = 0.400;
+        $this->etat = "cree";
+        //$user = $this->getUser();
+        //$user = $this->Container->get('security.context')->getToken()->getUser();
+        //$this->user = $user;
+
+        
     }
     /**
      * toString
@@ -100,6 +137,7 @@ class Offre
      */
     public function addLigne(\Manager\CommercialBundle\Entity\Ligne $lignes)
     {
+        $lignes->setOffre($this);
         $this->lignes[] = $lignes;
     
         return $this;
@@ -169,5 +207,97 @@ class Offre
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Offre
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set timbre
+     *
+     * @param float $timbre
+     * @return Offre
+     */
+    public function setTimbre($timbre)
+    {
+        $this->timbre = $timbre;
+    
+        return $this;
+    }
+
+    /**
+     * Get timbre
+     *
+     * @return float 
+     */
+    public function getTimbre()
+    {
+        return $this->timbre;
+    }
+
+    /**
+     * Set totalttc
+     *
+     * @param float $totalttc
+     * @return Offre
+     */
+    public function setTotalttc($totalttc)
+    {
+        $this->totalttc = $totalttc;
+    
+        return $this;
+    }
+
+    /**
+     * Get totalttc
+     *
+     * @return float 
+     */
+    public function getTotalttc()
+    {
+        return $this->totalttc;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     * @return Offre
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
     }
 }

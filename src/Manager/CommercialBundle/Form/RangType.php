@@ -15,9 +15,14 @@ class RangType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('categorie')
-            ->add('articles', null, array('required' => false))
+            ->add('name','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('categorie',null,array(
+                'attr' => array('class' => 'form-control')))
+            ->add('articles',null,array(
+                'attr' => array('class' => 'form-control')))
+            ->add('file','file',array(
+                'attr' => array('class' => 'form-control')))
         ;
     }
     

@@ -19,7 +19,6 @@ class DemoController extends Controller
     public function indexAction()
     {
         return array();
-        //tableau
     }
 
     /**
@@ -29,7 +28,6 @@ class DemoController extends Controller
     public function helloAction($name)
     {
         return array('name' => $name);
-        //hello ajroudi
     }
 
     /**

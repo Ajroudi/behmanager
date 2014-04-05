@@ -67,7 +67,7 @@ class FournisseurController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter un fournisseur','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class FournisseurController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer le fournisseur','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -216,7 +216,7 @@ class FournisseurController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_fournisseur_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer le fournisseur','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

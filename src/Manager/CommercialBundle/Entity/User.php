@@ -35,6 +35,16 @@ class User extends BaseUser
      */ 
      private $offres;
 
+     /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
+     */ 
+     private $messages;
+     
+     /**
+     * @ORM\OneToMany(targetEntity="Alert", mappedBy="user")
+     */ 
+     private $alerts;
+
     /**
      * Get id
      *
@@ -76,8 +86,16 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->offres = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->alerts = new ArrayCollection();
     }
-    
+    /**
+     * toString
+     */
+    public function __toString() {
+        return $this->getName();
+    }    
+
     /**
      * Add offres
      *
@@ -109,5 +127,71 @@ class User extends BaseUser
     public function getOffres()
     {
         return $this->offres;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \Manager\CommercialBundle\Entity\Message $messages
+     * @return User
+     */
+    public function addMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+    
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \Manager\CommercialBundle\Entity\Message $messages
+     */
+    public function removeMessage(\Manager\CommercialBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Add alerts
+     *
+     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     * @return User
+     */
+    public function addAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    {
+        $this->alerts[] = $alerts;
+    
+        return $this;
+    }
+
+    /**
+     * Remove alerts
+     *
+     * @param \Manager\CommercialBundle\Entity\Alert $alerts
+     */
+    public function removeAlert(\Manager\CommercialBundle\Entity\Alert $alerts)
+    {
+        $this->alerts->removeElement($alerts);
+    }
+
+    /**
+     * Get alerts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlerts()
+    {
+        return $this->alerts;
     }
 }

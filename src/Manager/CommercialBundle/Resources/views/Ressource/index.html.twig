@@ -9,40 +9,55 @@
             </ol>
           </div>
         </div><!-- /.row -->
+        
+<div class="row">
+{% if is_granted("ROLE_DIRCOMMERCIAL") %}
+    {% for entity in entities %}
+          <div class="col-lg-3">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <i class="fa fa-file-text fa-5x"></i>
+                  </div>
+                 <div class="col-xs-8">
+                     <h6> <em>{{entity.name}}</em> </h6>
+                         
+                  </div>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_ressource_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_ressource_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_ressource_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                        Actions
+                    </div>
+                        
+                          <div class="col-xs-6 text-right">
+                      
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-arrow-circle-right"></i> </a>
+                          <ul class="dropdown-menu">
+                            <li><a href="{{ path('admin_ressource_show', { 'id': entity.id }) }}">Voir</a></li>
+                            {% if is_granted('ROLE_DIRCOMMERCIAL') %}
+                            <li><a href="{{ path('admin_ressource_edit', { 'id': entity.id }) }}">Editer</a></li>
+                            {% endif %}
+    
+                          </ul>
+                        </div>
+                    </div>
+                          
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+         {% endfor %}
+        {% endif %}
+              
+        </div><!-- /.row -->
 
-        <ul>
-        <li>
-            <a href="{{ path('admin_ressource_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+
+    {% endblock %}      
+       

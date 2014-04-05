@@ -15,8 +15,10 @@ class FamilleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('file')
+            ->add('name','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('file','file',array(
+                'attr' => array('class' => 'form-control')))
         ;
     }
     

@@ -67,7 +67,7 @@ class CategorieController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter une categorie','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class CategorieController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer la catégorie','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -217,6 +217,7 @@ class CategorieController extends Controller
             ->setAction($this->generateUrl('admin_categorie_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer la catégorie','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

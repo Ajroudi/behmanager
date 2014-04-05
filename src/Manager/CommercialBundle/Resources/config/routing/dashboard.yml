@@ -1,0 +1,8 @@
+dashboard_show:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Dashboard:show" }
+dashboard_testtt:
+    pattern:  /
+    defaults: { _controller: "ManagerCommercialBundle:Commercial:testtt" }
+
+

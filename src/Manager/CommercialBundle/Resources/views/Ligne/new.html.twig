@@ -2,14 +2,50 @@
 
 {% block body -%}
     <h1>Ligne creation</h1>
+<form method="post">
+    
+    <div class="col-lg-4">
+    {{ form_label(form.article, 'article') }}
+    {{ form_widget(form.article) }}
+    </div>
+    <div class="col-lg-1">
+    {{ form_label(form.qte, 'qte') }}
+    {{ form_widget(form.qte) }}
+    </div>
+    <div class="col-lg-1">
+    {{ form_label(form.remise, 'remise') }}
+    {{ form_widget(form.remise) }}
+    </div>
+    <div class="col-lg-1">
+    {{ form_label(form.puht, 'puht') }}
+    {{ form_widget(form.puht) }}
+    </div>
+    <div class="col-lg-1">
+    {{ form_label(form.tva, 'tva') }}
+    {{ form_widget(form.tva) }}
+    </div>
+        <div class="col-lg-1">
 
-    {{ form(form) }}
+    {{ form_widget(form.puttc, { 'attr': {'class': 'puttc' } }) }}
+    </div>
+    <div class="col-lg-2">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_ligne') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    {{ form_widget(form.totalttc, { 'attr': {'class': 'totttc' } }) }}
+    </div>
+    <div class="col-lg-1">
+    <input type="submit" value="+" />
+    </div>
+     {{ form_widget(form._token) }}     
+</form>
+    
+
+    <script>
+
+        $(document).ready(function(){
+        //console.log("la page est bien chargée");
+        $(".puttc").hide();
+        $(".totttc").hide();
+    });
+    </script>
+    
 {% endblock %}

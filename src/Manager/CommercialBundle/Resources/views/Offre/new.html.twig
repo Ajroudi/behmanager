@@ -1,14 +1,86 @@
 {% extends '::layout.html.twig' %}
+
+{% block datepikerCss %}
+ <link href="{{asset('bundles/managercommercial/css/Aristo/Aristo.css')}}" rel="stylesheet">
+{% endblock %}
+ 
 {% block body -%}
-    <h1>Offre creation</h1>
+ <h1>Ajouter une Offre <small>Les Biens d'Equipements Hôteliers</small></h1>
+ <ol class="breadcrumb">
+              <li><a href="{{ path('commercial_offre') }}"><i class="icon-dashboard"></i> Offres</li></a>
+              <li class="active"><a href="{{ path('admin_offre_new') }}"><i class="icon-file-alt"></i> Ajouter une nouvelle offre BEH</li></a>
+            </ol>
+          </div>
+        </div><!-- /.row -->
 
-    {{ form(form) }}
+<form method="post">
+    
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_offre') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    {{ form_label(form.titre, 'Titre') }}
+    {{ form_widget(form.titre, { 'attr': {'placeholder': 'Titre de l\'offre' } }) }}
+
+        
+
+    {{ form_label(form.client, 'Client') }}
+    {{ form_widget(form.client) }}
+
+        
+   
+    {{ form_widget(form.totalttc) }}
+
+        
+
+
+    {{ form_widget(form.date, { 'attr': {'class': 'date' } }) }}
+  
+    
+        <ul class="form-lignes" data-prototype="{{ form_widget(form.lignes.vars.prototype)|e }}">
+        
+        <input id="form-ligne-btn" type="button" value="Ajouter une ligne" />
+    </ul>
+        {{ form_widget(form._token) }}
+        
+        <input type="submit" value="Ok" />
+
+</form>
+
+
+{% endblock %}
+    
+{% block datepikerJs %}
+    
+   <script src="{{asset('bundles/managercommercial/js/jquery-ui-1.10.3.js')}}"></script>
+    <script  type="text/javascript">
+   $("form input.date").datepicker({
+    dateFormat: 'dd/mm/yy', 
+    firstDay:1
+}).attr("readonly","readonly");     
+   </script>
+   
+   <script>
+    $(function(){
+        
+        var index = 0;
+        var prototype = $('ul.form-lignes').data('prototype');
+        $('#form-ligne-btn').on('click', function(){
+           var newForm = prototype.replace(/__name__/g, index++);
+           var newLi = $('<li></li>');
+           
+           newLi.append(newForm);
+           $(this).before(newLi);
+           $(this).addClass("col-lg-2");
+        });
+         
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        //console.log("la page est bien chargée");
+        //$(".user").hide();
+        //$(".totalttc").hide();
+        //$(".timbre").hide();
+        //$(".date").hide();
+    });
+</script>
 {% endblock %}

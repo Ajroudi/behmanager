@@ -1,6 +1,4 @@
-manager_commercial_homepage:
-    pattern:  /
-    defaults: { _controller: ManagerCommercialBundle:Default:index }
+
 
 ManagerCommercialBundle_admin_famille:
     resource: "@ManagerCommercialBundle/Resources/config/routing/famille.yml"
@@ -45,3 +43,7 @@ ManagerCommercialBundle_admin_client:
 ManagerCommercialBundle_commercial:
     resource: "@ManagerCommercialBundle/Resources/config/routing/commercial.yml"
     prefix:   /commercial
+    
+ManagerCommercialBundle_dashboard:
+    resource: "@ManagerCommercialBundle/Resources/config/routing/dashboard.yml"
+    prefix:   /

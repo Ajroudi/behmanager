@@ -2,9 +2,9 @@
 
 {% block body -%}
 
- <h1>Articles BEH <small>Les Biens d'Equipements Hôteliers</small></h1>
+ <h1>Familles BEH <small>Les Biens d'Equipements Hôteliers</small></h1>
  <ol class="breadcrumb">
-              <li><a href="{{ path('commercial_famille') }}"><i class="icon-dashboard"></i> Famille</a></li>
+              
               <li class="active"><a href="{{ path('admin_famille_new') }}"><i class="icon-file-alt"></i> Ajouter une famille BEH</li></a>
             </ol>
           </div>
@@ -13,20 +13,23 @@
         
 <div class="row">
     {% for entity in entities %}
-          <div class="col-lg-3">
+  
+        <div class="col-lg-3">
             <div class="panel panel-info">
               <div class="panel-heading">
                 <div class="row">
-                 
-                   <img src="{{asset('bundles/managercommercial/images/famille/'~entity.id~'.'~entity.path)}}" class="col-lg-12" />
-                 
+                 <a href="{{ path('famille_categorie', { 'id': entity.id }) }}">
+                   <img src="{{asset('bundles/managercommercial/images/famille/'~entity.id~'.'~entity.url)}}" class="col-lg-12" />
+                 </a>
                 </div>
               </div>
-              <a href="#">
+           
                 <div class="panel-footer announcement-bottom">
                   <div class="row">
                     <div class="col-xs-6">
+                        <a href="{{ path('famille_categorie', { 'id': entity.id }) }}">
                       {{ entity.name }}
+                            </a>
                     </div>
                     <div class="col-xs-6 text-right">
                       
@@ -35,15 +38,17 @@
                           <ul class="dropdown-menu">
                             <li><a href="{{ path('admin_famille_show', { 'id': entity.id }) }}">Voir</a></li>
                             <li><a href="{{ path('admin_famille_edit', { 'id': entity.id }) }}">Editer</a></li>
+                             <li><a href="{{ path('famille_categorie', { 'id': entity.id }) }}">categorie</a></li>
     
                           </ul>
                         </div>
                     </div>
                   </div>
                 </div>
-              </a>
+              
             </div>
           </div>
+  
          {% endfor %}
         </div><!-- /.row -->
 

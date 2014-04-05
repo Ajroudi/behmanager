@@ -67,7 +67,7 @@ class RessourceController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter une Ressource','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class RessourceController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer la ressource','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -216,7 +216,7 @@ class RessourceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_ressource_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Editer Range','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

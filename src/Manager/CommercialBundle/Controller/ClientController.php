@@ -67,7 +67,7 @@ class ClientController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter un client','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class ClientController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer l\'article','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -216,7 +216,7 @@ class ClientController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_client_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer l\'article','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
     }

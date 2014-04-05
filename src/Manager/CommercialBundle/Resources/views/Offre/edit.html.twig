@@ -1,5 +1,9 @@
 {% extends '::layout.html.twig' %}
 
+{% block datepikerCss %}
+ <link href="{{asset('bundles/managercommercial/css/Aristo/Aristo.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block body -%}
     <h1>Offre edit</h1>
 
@@ -13,4 +17,15 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+{% endblock %}
+
+{% block datepikerJs %}
+    
+   <script src="{{asset('bundles/managercommercial/js/jquery-ui-1.10.3.js')}}"></script>
+    <script  type="text/javascript">
+   $("form input.date").datepicker({
+    dateFormat: 'dd/mm/yy', 
+    firstDay:1
+}).attr("readonly","readonly");     
+   </script>
 {% endblock %}

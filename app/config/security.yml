@@ -1,20 +1,42 @@
+# app/config/security.yml
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
+        
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
         main:
-            pattern: ^/
+            provider: main
+
             form_login:
+
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-            logout:       true
+            logout:       
+                path:       fos_user_security_logout
+                target:     /login
             anonymous:    true
+            remember_me:
+                key:        %secret% 
+    
+    
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_COMMERCIAL, ROLE_DIRCOMMERCIAL]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/resetting, role: ROLE_SUPER_ADMIN }
+        - { path: ^/, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/commercial, role: [ROLE_COMMERCIAL,ROLE_DIRCOMMERCIAL]   }
+        - { path: ^/admin, role: [ROLE_ADMIN,ROLE_COMMERCIAL,ROLE_DIRCOMMERCIAL]  }
+       

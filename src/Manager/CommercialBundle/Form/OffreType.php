@@ -15,8 +15,28 @@ class OffreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('client')
+            ->add('titre','text',array(
+                'attr' => array('class' => 'form-control')))
+            ->add('client',null,array(
+                'attr' => array('class' => 'form-control')))
+                
+            //->add('user',null,array(
+              //  'attr' => array('class' => 'form-control')))
+                
+            ->add('totalttc','text',array(
+                'attr' => array('class' => 'form-control')))
+           // ->add('timbre','text',array(
+               // 'attr' => array('class' => 'form-control')))
+            ->add('lignes','collection',array('type'=>new LigneType(),
+                                             'prototype'=> true,
+                                             'allow_add'=> true,
+                                             'by_reference' => false))
+            ->add('date', 'date', array(
+                'widget' => 'single_text',
+                'input'  => 'datetime',
+                'format' => 'dd/MM/yyyy',
+                'attr' => array ('class' => 'date && form-control'),
+            ));
         ;
     }
     

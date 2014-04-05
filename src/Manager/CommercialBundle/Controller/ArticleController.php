@@ -67,7 +67,8 @@ class ArticleController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter l\'article','attr' => array('class' => 'btn btn-primary btn-block')));
+
 
         return $form;
     }
@@ -146,7 +147,7 @@ class ArticleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Editer l\'article','attr' => array('class' => 'btn btn-primary btn-block')));
 
         return $form;
     }
@@ -216,8 +217,23 @@ class ArticleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_article_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer l\'article','attr' => array('class' => 'btn btn-danger btn-block')))
             ->getForm()
         ;
+    }
+    
+     /**
+     * Finds and displays a Categories By Famille entity.
+     *
+     */
+        public function rangesProductAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $range = $em->getRepository('ManagerCommercialBundle:Rang')->find($id);
+
+        return $this->render('ManagerCommercialBundle:Commercial:product.html.twig', array(
+            'entity' => $range,
+      ));
     }
 }

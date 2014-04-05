@@ -1,0 +1,29 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+             <h1>Tableau de bord <small>Vue d'ensemble de Statistique</small></h1>
+            <ol class="breadcrumb">
+              <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+            </ol>
+
+          </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+
+          {{ render(controller('ManagerCommercialBundle:Dashboard:offrecree') )}}
+            
+          {{ render(controller('ManagerCommercialBundle:Dashboard:offrevalide') )}}
+            
+          {{ render(controller('ManagerCommercialBundle:Dashboard:offreenvoye') )}}
+            
+          {{ render(controller('ManagerCommercialBundle:Dashboard:offrefacture') )}}
+
+
+            
+        </div><!-- /.row -->
+
+      
+
+   
+    {% endblock %}      
